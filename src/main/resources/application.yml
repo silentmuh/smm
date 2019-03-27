@@ -1,0 +1,27 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /springBootMybatis
+
+spring:
+  datasource:
+    name: test
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8&useSSL=true
+    username: root
+    password: root
+    #新版数据库驱动使用com.mysql.cj.jdbc.Driver    旧版com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+mybatis:
+  #这里是实体类的位置，#实体扫描，多个package用逗号或者分号分隔
+  #typeAliasesPackage: com.hegg.springboot.model
+  type-aliases-package: com.hegg.springboot.model
+  #把xml文件放在com.XX.mapper.*中可能会出现找不到的问题，这里把他放在resource下的mapper中
+  mapper-locations: classpath:mapper/*.xml
+
+#分页插件
+pagehelper:
+  helperDialect: mysql                           #分页插件方言选择
+  reasonable: true                               #合理化参数，设为true时pageNum<=0 时会查第一页， pageNum>pages（超过总数时），会查询最后一页
+  supportMethodsArguments: true
