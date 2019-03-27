@@ -11,7 +11,7 @@ spring:
     password: root
     #新版数据库驱动使用com.mysql.cj.jdbc.Driver    旧版com.mysql.jdbc.Driver
     driver-class-name: com.mysql.cj.jdbc.Driver
-    type: com.alibaba.druid.pool.DruidDataSource
+    type: com.zaxxer.hikari.HikariDataSource
 
 mybatis:
   #这里是实体类的位置，#实体扫描，多个package用逗号或者分号分隔
