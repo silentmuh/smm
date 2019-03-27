@@ -21,7 +21,7 @@ public class UserController {
     @RequestMapping(value = "/hello", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
     @ResponseBody
     public String getHello() {
-        return "Hello,Word!!!世界5";
+        return "Hello,Word!!!世界1";
     }
 
 
