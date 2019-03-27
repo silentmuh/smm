@@ -6,24 +6,26 @@ import com.hegg.springboot.common.MyResponse;
 import com.hegg.springboot.model.User;
 import com.hegg.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 
-@RestController
+@Controller
 @RequestMapping("/userController")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "/hello")
     @ResponseBody
     public String getHello() {
         return "Hello,Word!!!世界1";
     }
-
 
     @RequestMapping(value = "/selectByPrimaryKey", method = RequestMethod.POST)
     @ResponseBody
@@ -163,4 +165,13 @@ public class UserController {
         }
         return response;
     }
+
+    @RequestMapping(value = "/list")
+    public ModelAndView list(Model model){  //这个地方用model来存储数据，里面存储键值对，值可以为list
+        List<User> userList =userService.getAllUser();
+        model.addAttribute("title","所有用户");
+        model.addAttribute("userList", userList);
+        return new ModelAndView("users/list", "userModel", model);
+    }
+
 }

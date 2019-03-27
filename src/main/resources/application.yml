@@ -4,6 +4,7 @@ server:
     context-path: /springBootMybatis
 
 spring:
+  #数据库配置
   datasource:
     name: test
     url: jdbc:mysql://localhost:3306/test?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8&useSSL=true
@@ -13,6 +14,37 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     #com.alibaba.druid.pool.DruidDataSource
     type: com.zaxxer.hikari.HikariDataSource
+  #thymeleaf是一种模板语言，可以动态或者静态显示文本内容
+  thymeleaf:
+    cache: true             #热部署
+    check-template: true
+    check-template-location: true
+    enabled: true
+    encoding: UTF-8
+    #excluded-view-names:
+    mode: HTML5
+    prefix: classpath:/templates/
+    #reactive:
+      #max-chunk-size:
+      #media-types:
+    servlet:
+      content-type: text/html
+    suffix: .html
+    #template-resolver-order:
+    #view-names:
+
+
+
+
+
+
+
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /**
 
 mybatis:
   #这里是实体类的位置，#实体扫描，多个package用逗号或者分号分隔
