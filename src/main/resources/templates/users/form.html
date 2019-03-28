@@ -2,23 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>welcome</title>
+    <title>添加</title>
 </head>
 <body>
 <div th:replace="fragments/header :: header">...</div>
 <h3 th:text="${userModel.title}">Welcome to springboot</h3>
-<form action="/users" th:action="@{/templates/users}" method="post" th:object="${userModel.user}">
+<form action="userThymeleafController/create" th:action="@{/userThymeleafController/create}" method="post" th:object="${userModel.user}">
     <input type="hidden" name="id" th:value="${userModel.user.id}">
-    名称：<br>
-    <input type="text" name="name" th:value="*{name}">
-    <br>
-    年龄：<br>
-    <input type="text" name="age" th:value="*{age}">
+    名称：<input type="text" name="name" th:value="*{name}"><br>
+    性别：<input type="text" name="sex" th:value="*{sex}"><br>
+    年龄：<input type="text" name="age" th:value="*{age}"><br>
     <input type="submit" value="提交">
 </form>
-
-
-<div th:replace="~{fragments/footer :: footer}">...</div>
-
+<div th:replace="fragments/footer :: header">...</div>
 </body>
 </html>
