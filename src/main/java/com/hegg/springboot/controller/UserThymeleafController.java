@@ -102,4 +102,9 @@ public class UserThymeleafController {
         model.addAttribute("title", "修改用户");
         return new ModelAndView("users/form", "userModel", model);
     }
+
+    @RequestMapping("/helloError")
+    public String helloError() throws Exception {
+        throw new Exception("发生错误");
+    }
 }
