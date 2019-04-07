@@ -10,6 +10,7 @@
 <body>
 <div th:replace="fragments/header :: header">...</div>
 <h3 th:text="${userModel.title}">Welcome to springboot</h3>
+<h5 th:text="${userModel.findByPageInfo.list.size() }">Welcome to springboot</h5>
 <div>
     <a th:href="@{toForm}">创建用户</a>
 </div>
@@ -25,10 +26,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:if="${userModel.userList.size()} eq 0">
+    <tr th:if="${userModel.findByPageInfo.list.size() eq 0}">
         <td colspan="4">没有用户信息！！</td>
     </tr>
-    <tr th:each="user : ${userModel.userList}">
+    <tr th:each="user : ${userModel.findByPageInfo.list}">
         <td th:text="${user.id}">1</td>
         <td th:text="${user.sex}">姓名</td>
         <td th:text="${user.age}">11</td>
@@ -45,4 +46,29 @@
     </tbody>
 </table>
 </body>
+<div>
+    <div class="clearfix">
+        <ul class="pagination m-b-5 pull-right">
+            <li th:if="${userModel.findByPageInfo.hasPreviousPage}"><a
+                    th:href="@{'/userThymeleafController/list?pageNum='+${userModel.findByPageInfo.prePage}+'&pageSize='+${userModel.findByPageInfo.pageSize}}"
+                    aria-label="Previous"> <i class="fa fa-angle-left"></i>&nbsp;上一页
+            </a></li>
+
+            <th:block th:each="nav : ${userModel.findByPageInfo.navigatepageNums}">
+                <li th:class="${nav==userModel.findByPageInfo.pageNum}?'active':''"><a
+                        th:href="@{'/userThymeleafController/list?pageNum='+${nav}+'&pageSize='+${userModel.findByPageInfo.pageSize}}"
+                        th:text="${nav}"></a></li>
+            </th:block>
+
+            <th:block th:if="${userModel.findByPageInfo.hasNextPage}">
+                <li><a
+                        th:href="@{'/userThymeleafController/list?pageNum='+${userModel.findByPageInfo.nextPage}+'C'+${userModel.findByPageInfo.pageSize}}"
+                        aria-label="Next"> 下一页&nbsp;<i class="fa fa-angle-right"></i>
+                </a></li>
+            </th:block>
+
+            <li><span th:text="'共'+${userModel.findByPageInfo.pages}+'页'"></span></li>
+        </ul>
+    </div>
+</div>
 </html>
