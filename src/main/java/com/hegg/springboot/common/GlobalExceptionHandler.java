@@ -18,6 +18,7 @@ public class GlobalExceptionHandler {
     public static final String DEFAULT_ERROR_VIEW = "error/error";
 
     //@ExceptionHandler用来定义函数针对的异常类型，最后将Exception对象和请求URL映射到error.html中
+    //2020-05-08 11:40 github在线编辑改文件于当前行
     @ExceptionHandler(value = Exception.class)
     public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
         ModelAndView mav = new ModelAndView();
